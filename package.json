@@ -9,7 +9,7 @@
     "test": "vitest run",
     "format": "biome format",
     "lint": "biome lint",
-    "check": "biome check"
+    "check": "biome check --write"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.8",
