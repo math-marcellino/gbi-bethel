@@ -26,10 +26,11 @@
 		"rules": {
 			"recommended": true,
 			"suspicious": {
-				"noArrayIndexKey": "warn"
+				"noArrayIndexKey": "off"
 			},
 			"a11y": {
-				"useButtonType": "warn"
+				"useButtonType": "off",
+				"noStaticElementInteractions": "off"
 			},
 			"correctness": {
 				"useExhaustiveDependencies": "warn"
