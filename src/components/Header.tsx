@@ -90,6 +90,7 @@ export default function Header() {
 	return (
 		<header>
 			{/* Overlay for mobile menu */}
+			{/** biome-ignore lint/a11y/useKeyWithClickEvents: igniore */}
 			<div
 				className={cn(
 					"fixed inset-0 bg-black/20 backdrop-blur-sm z-10 lg:hidden transition-opacity duration-300",

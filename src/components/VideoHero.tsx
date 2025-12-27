@@ -33,7 +33,7 @@ export default function VideoHero() {
 	}, []);
 
 	return (
-		<section className="w-full min-h-screen flex flex-col items-center bg-background">
+		<section className="w-full flex flex-col items-center bg-background">
 			{/* Spacer for navbar - gives the navbar its own dedicated space */}
 			<div className="h-20 md:h-24 lg:h-[100px] w-full shrink-0" />
 
