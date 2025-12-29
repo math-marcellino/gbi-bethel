@@ -30,7 +30,8 @@
 			},
 			"a11y": {
 				"useButtonType": "off",
-				"noStaticElementInteractions": "off"
+				"noStaticElementInteractions": "off",
+				"noSvgWithoutTitle": "off"
 			},
 			"correctness": {
 				"useExhaustiveDependencies": "warn"
