@@ -2,6 +2,8 @@ import { MapPin } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { GlowingEffect } from "./ui/glowing-effect";
+import { SparklesCore } from "./ui/sparkles";
 import { TextAnimate } from "./ui/text-animate";
 
 // Campus data with addresses
@@ -65,7 +67,16 @@ export default function CampusesSection() {
 		useState<keyof typeof campusesData>("Bandung");
 
 	return (
-		<section className="w-full py-24 bg-background">
+		<section className="relative w-full py-24 bg-background">
+			<SparklesCore
+				id={"tsparticlesfullpage"}
+				background="transparent"
+				minSize={0.6}
+				maxSize={1.4}
+				particleDensity={100}
+				className="w-full h-full absolute inset-0"
+				particleColor="#000000"
+			/>
 			<div className="container mx-auto px-4 max-w-6xl">
 				{/* Title */}
 				<div className="text-center mb-16 space-y-4">
@@ -96,9 +107,10 @@ export default function CampusesSection() {
 								key={city}
 								onClick={() => setActiveCity(city)}
 								className={cn(
-									"w-full text-left px-6 py-4 rounded-xl text-sm font-medium transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-primary whitespace-nowrap",
+									"px-6 py-2.5 md:py-4 rounded-full md:rounded-xl text-sm font-medium transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-primary whitespace-nowrap",
+									"md:w-full md:text-left md:rounded-r-none",
 									activeCity === city
-										? "bg-primary/10 text-primary border-r-4 border-primary rounded-r-none"
+										? "bg-primary text-primary-foreground md:bg-primary/10 md:text-primary md:border-r-4 md:border-primary"
 										: "text-muted-foreground hover:bg-muted/50 hover:text-foreground md:border-r-4 md:border-transparent",
 								)}
 							>
@@ -126,6 +138,13 @@ export default function CampusesSection() {
 										transition={{ delay: index * 0.1 }}
 										className="group relative p-6 rounded-2xl border border-border/50 bg-card/30 hover:bg-card hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
 									>
+										<GlowingEffect
+											spread={60}
+											glow={true}
+											disabled={false}
+											proximity={64}
+											inactiveZone={0.01}
+										/>
 										<h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
 											{campus.name}
 										</h3>
