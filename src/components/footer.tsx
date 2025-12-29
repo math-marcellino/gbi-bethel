@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 
 const links = [
 	{
@@ -56,7 +56,7 @@ export default function FooterSection() {
 			<div className="mx-auto max-w-5xl px-6">
 				<div className="grid gap-12 md:grid-cols-5">
 					<div className="md:col-span-2">
-						<Link href="/" aria-label="go home" className="block size-fit">
+						<Link to="/" aria-label="go home" className="block size-fit">
 							<img
 								src="/gbi-bethel-icon-plain.png"
 								alt="gbi-bethel-icon-plain"
@@ -77,7 +77,7 @@ export default function FooterSection() {
 								{link.items.map((item, index) => (
 									<Link
 										key={index}
-										href={item.href}
+										to={item.href}
 										className="text-muted-foreground hover:text-primary block duration-150"
 									>
 										<span>{item.title}</span>
@@ -93,7 +93,7 @@ export default function FooterSection() {
 					</span>
 					<div className="order-first flex flex-wrap justify-center gap-6 text-sm md:order-last">
 						<Link
-							href="#"
+							to="/"
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label="Instagram"
@@ -113,7 +113,7 @@ export default function FooterSection() {
 							</svg>
 						</Link>
 						<Link
-							href="#"
+							to="/"
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label="YouTube"
@@ -132,7 +132,7 @@ export default function FooterSection() {
 							</svg>
 						</Link>
 						<Link
-							href="#"
+							to="/"
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label="TikTok"
