@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import CampusesSection from "@/components/CampusesSection";
 import JourneySection from "@/components/JourneySection";
 import PastorSection from "@/components/PastorSection";
 import VideoHero from "@/components/VideoHero";
@@ -16,6 +17,9 @@ function App() {
 
 			{/* Journey Section */}
 			<JourneySection />
+
+			{/* Campuses Section */}
+			<CampusesSection />
 		</main>
 	);
 }
