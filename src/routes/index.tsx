@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import VideoHero from "@/components/VideoHero";
+import JourneySection from "@/components/JourneySection";
 import PastorSection from "@/components/PastorSection";
+import VideoHero from "@/components/VideoHero";
 
 export const Route = createFileRoute("/")({ component: App });
 
@@ -9,10 +10,12 @@ function App() {
 		<main>
 			{/* Video Hero Section */}
 			<VideoHero />
-			
+
 			{/* Pastor Section */}
 			<PastorSection />
+
+			{/* Journey Section */}
+			<JourneySection />
 		</main>
 	);
 }
-

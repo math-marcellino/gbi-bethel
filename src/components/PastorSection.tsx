@@ -95,7 +95,7 @@ export default function PastorSection() {
 
 								<TextAnimate
 									as="h3"
-									animation="scaleUp"
+									animation="slideUp"
 									className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground"
 								>
 									{pastor.name}
@@ -104,7 +104,7 @@ export default function PastorSection() {
 								{/* Title */}
 								<TextAnimate
 									as="span"
-									animation="blurInUp"
+									animation="slideUp"
 									className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm md:text-base font-semibold border border-primary/20"
 								>
 									{pastor.title}
@@ -113,7 +113,7 @@ export default function PastorSection() {
 								{/* Description */}
 								<TextAnimate
 									as="p"
-									animation="scaleUp"
+									animation="slideUp"
 									className="text-base md:text-lg text-muted-foreground leading-relaxed"
 								>
 									{pastor.description}
