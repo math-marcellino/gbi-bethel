@@ -58,6 +58,7 @@ export default function Header() {
 	const [hoveredCity, setHoveredCity] =
 		useState<keyof typeof campusesData>("Bandung");
 	const mobileMenuRef = useRef<HTMLDivElement>(null);
+	const mobileMenuDropdownRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -73,7 +74,9 @@ export default function Header() {
 			if (
 				menuState &&
 				mobileMenuRef.current &&
-				!mobileMenuRef.current.contains(event.target as Node)
+				!mobileMenuRef.current.contains(event.target as Node) &&
+				mobileMenuDropdownRef.current &&
+				!mobileMenuDropdownRef.current.contains(event.target as Node)
 			) {
 				setMenuState(false);
 			}
@@ -253,103 +256,103 @@ export default function Header() {
 					</div>
 
 					{/* Mobile Navigation */}
-					<div
-						className={cn(
-							"lg:hidden overflow-hidden transition-all duration-300 ease-out",
-							menuState
-								? "max-h-[80vh] opacity-100 translate-y-0"
-								: "max-h-0 opacity-0 -translate-y-4",
-						)}
-					>
-						<div className="bg-background rounded-2xl border p-6 shadow-2xl shadow-zinc-300/20 mb-6 dark:shadow-none">
-							<ul className="space-y-4 text-base">
-								{menuItems.map((item, index) => (
-									<li key={index}>
-										{item.hasDropdown ? (
-											<div>
-												{/* Accordion Header */}
-												<button
-													onClick={() => toggleMobileAccordion(item.name)}
-													className="text-muted-foreground hover:text-accent-foreground flex items-center justify-between w-full duration-150 py-2"
-												>
-													<span>{item.name}</span>
-													<ChevronDown
-														className={cn(
-															"size-5 transition-transform duration-300",
-															mobileAccordion === item.name && "rotate-180",
-														)}
-													/>
-												</button>
+				</div>
 
-												{/* Accordion Content */}
-												<div
-													className={cn(
-														"overflow-hidden transition-all duration-300 ease-out",
-														mobileAccordion === item.name
-															? "max-h-[500px] opacity-100"
-															: "max-h-0 opacity-0",
-													)}
-												>
-													<div className="pt-2 pb-4 pl-4 border-l-2 border-muted ml-2">
-														{item.dropdownType === "campuses" && (
-															<div className="space-y-4">
-																{Object.entries(campusesData).map(
-																	([region, campuses]) => (
-																		<div key={region}>
-																			<h4 className="text-foreground font-semibold text-sm mb-2">
-																				{region}
-																			</h4>
-																			<ul className="space-y-2">
-																				{campuses.map((campus, idx) => (
-																					<li key={idx}>
-																						<Link
-																							to={campus.href}
-																							className="text-muted-foreground hover:text-foreground text-sm block transition-colors duration-150"
-																						>
-																							{campus.name}
-																						</Link>
-																					</li>
-																				))}
-																			</ul>
-																		</div>
-																	),
-																)}
-															</div>
-														)}
-
-														{item.dropdownType === "about" && (
-															<div className="space-y-4">
-																{aboutUsData.map((person, idx) => (
-																	<Link
-																		key={idx}
-																		to={person.href}
-																		className="group block"
-																	>
-																		<h4 className="text-foreground font-semibold text-sm mb-1 group-hover:text-primary transition-colors">
-																			{person.title}
-																		</h4>
-																		<p className="text-muted-foreground text-sm group-hover:text-foreground transition-colors">
-																			{person.name}
-																		</p>
-																	</Link>
-																))}
-															</div>
-														)}
-													</div>
-												</div>
-											</div>
-										) : (
-											<Link
-												to={item.href}
-												className="text-muted-foreground hover:text-accent-foreground block py-2 duration-150"
+				{/* Mobile Navigation */}
+				<div
+					ref={mobileMenuDropdownRef}
+					className={cn(
+						"lg:hidden mt-4 mx-auto max-w-md px-4 transition-all duration-300 ease-out",
+						menuState
+							? "opacity-100 translate-y-0 pointer-events-auto"
+							: "opacity-0 -translate-y-4 pointer-events-none",
+					)}
+				>
+					<div className="bg-background/95 backdrop-blur-xl rounded-2xl border p-6 shadow-2xl">
+						<ul className="space-y-4 text-base">
+							{menuItems.map((item, index) => (
+								<li key={index}>
+									{item.hasDropdown ? (
+										<div>
+											<button
+												onClick={() => toggleMobileAccordion(item.name)}
+												className="text-muted-foreground hover:text-accent-foreground flex items-center justify-between w-full duration-150 py-2"
 											>
 												<span>{item.name}</span>
-											</Link>
-										)}
-									</li>
-								))}
-							</ul>
-						</div>
+												<ChevronDown
+													className={cn(
+														"size-5 transition-transform duration-300",
+														mobileAccordion === item.name && "rotate-180",
+													)}
+												/>
+											</button>
+											<div
+												className={cn(
+													"overflow-hidden transition-all duration-300 ease-out",
+													mobileAccordion === item.name
+														? "max-h-[500px] opacity-100"
+														: "max-h-0 opacity-0",
+												)}
+											>
+												<div className="pt-2 pb-4 pl-4 border-l-2 border-muted ml-2">
+													{item.dropdownType === "campuses" && (
+														<div className="space-y-4">
+															{Object.entries(campusesData).map(
+																([region, campuses]) => (
+																	<div key={region}>
+																		<h4 className="text-foreground font-semibold text-sm mb-2">
+																			{region}
+																		</h4>
+																		<ul className="space-y-2">
+																			{campuses.map((campus, idx) => (
+																				<li key={idx}>
+																					<Link
+																						to={campus.href}
+																						className="text-muted-foreground hover:text-foreground text-sm block transition-colors duration-150"
+																					>
+																						{campus.name}
+																					</Link>
+																				</li>
+																			))}
+																		</ul>
+																	</div>
+																),
+															)}
+														</div>
+													)}
+
+													{item.dropdownType === "about" && (
+														<div className="space-y-4">
+															{aboutUsData.map((person, idx) => (
+																<Link
+																	key={idx}
+																	to={person.href}
+																	className="group block"
+																>
+																	<h4 className="text-foreground font-semibold text-sm mb-1 group-hover:text-primary transition-colors">
+																		{person.title}
+																	</h4>
+																	<p className="text-muted-foreground text-sm group-hover:text-foreground transition-colors">
+																		{person.name}
+																	</p>
+																</Link>
+															))}
+														</div>
+													)}
+												</div>
+											</div>
+										</div>
+									) : (
+										<Link
+											to={item.href}
+											className="text-muted-foreground hover:text-accent-foreground block py-2 duration-150"
+										>
+											<span>{item.name}</span>
+										</Link>
+									)}
+								</li>
+							))}
+						</ul>
 					</div>
 				</div>
 			</nav>
