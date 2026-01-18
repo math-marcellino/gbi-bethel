@@ -3,7 +3,7 @@ import { TextAnimate } from "./ui/text-animate";
 
 export default function JourneySection() {
 	return (
-		<section className="relative w-full h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+		<section className="relative w-full min-h-[80vh] flex items-center justify-center overflow-hidden py-12 md:py-20">
 			{/* Background Image with Parallax effect */}
 			<div className="absolute inset-0 z-0">
 				<motion.div
